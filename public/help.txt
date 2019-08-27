@@ -1,0 +1,129 @@
+
+.les differents paramètres des intruments:
+
+
+  id: identité de l'instrument 
+    (chiffre inscrit sur fond blanc)
+      
+  f : fréquence (hauteur)
+  
+  v : volume (amplitude)
+  
+  p : panoramique (stéreo)
+  
+  w : largeur du filtre
+    (ne concerne que les bruits)
+
+
+.les differents arguments des paramètres:
+
+  f : fade 
+    (période de glissement de la valeur
+    actuelle a la valeur désignée)
+      
+  l : loop
+    (lorsqu'il est activé, la valeur
+    actuelle varie entre les deux 
+    dernières valeurs designées)
+  
+  m : mute 
+    (ne concerne que le volume)
+
+
+.les valeurs:
+
+  les fréquences audibles se situes 
+  approximativement entre 20 et 20000 (hz)
+  
+  le volume se règle entre 0 et 1000
+  
+  le panning est une valeur variant 
+  théoriquement de -1 à 1 (0: au centre)
+  
+  la largeur du filtre que l'on applique
+  au bruit
+  
+  le fade prend comme valeur une durée
+  en seconde
+
+
+.les commandes:
+
+  <id> <valeur> <valeur> <valeur>
+  
+    modifie les valeurs des premiers 
+    arguments de chaque parametre : 
+    frequence, volume, panning
+  
+        ex: 10 440 10 1 
+        
+    je modifie la fréquence, le volume
+    et le panning de l'oscilo n°10
+
+      
+  <id> <parametre> <valeur> <valeur>
+  
+    modifie la valeur a atteindre et la
+    période du fade pour le parametre 
+    choisi pour l'instrument choisi
+            
+        ex : 0 p -1 10 
+        
+    je change la valeur à atteindre 
+    ainsi que la periode du panning 
+    pour l'oscilo n°0
+
+
+  <id> <parametre> f <valeur>
+  
+    modifie la période de glissement
+    du parametre choisi pour l'instrument
+    choisi.
+      
+        ex : 2 v f 10
+        
+    j'assigne la valeur de la période de 
+    glissement du volume de l'instrument 
+    n°2 à 10 seconde
+  
+  <id> v m
+    active/désactive le mode muet
+
+      
+      
+.les charatères de césure:
+
+  "+" ou "<" : incrementer une valeur
+  
+  "-" : décrementer une valeur
+
+
+.commander plusieurs instruments:
+
+  Vous pouvez envoyer des commandes à 
+  plusieurs instruments en selectionant 
+  une fourchette d'identifiants. Pour ce
+  faire utilisez le caractere de cesure 
+  "<" ou "+".
+  
+        ex : 0<10 v 20 
+  assignera le volume des instruments 
+  0 à 10 à la valeur 20.
+
+  Vous pouvez également incrementer les 
+  valeurs que vous envoyez.
+      
+        ex : 0<10 v 20-1 
+  assignera le volume de l'oscilo n°0 à la
+  valeur 20, de l'oscilo n°1 à la valeur 
+  19 etc...)
+
+
+.nb:
+
+  Utilisez les flèches haut et bas pour
+  vous déplacer dans l'historique des
+  commandes.
+  
+  Utilisez des points et non des virgules
+  pour indiquer des chiffres flotants

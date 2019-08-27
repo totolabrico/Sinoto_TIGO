@@ -1,0 +1,17 @@
+{
+  "name": "sinototestyservor",
+  "version": "1.0.0",
+  "description": "test",
+  "main": "serveur.js",
+  "dependencies": {
+    "express": "^4.17.1",
+    "nodemon": "^1.19.1",
+    "socket.io": "^2.2.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "server": "node serveur.js"
+  },
+  "author": "totolabrico",
+  "license": "ISC"
+}

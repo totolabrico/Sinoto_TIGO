@@ -1,0 +1,306 @@
+__________________________________________________0
+                 comment manipuler les oscillateurs
+
+
+Pour manipuler un oscillateur, on indique tout
+d'abord son indentifiant (Nombre entre 0 et 26,
+inscrits sur fond blanc) en début de ligne de
+commande, puis le paramètre que l'on souhaite
+modifier, puis la valeur de ce paramètre.
+
+nb: ci dessous, tout ce qui est signifié [ ]
+entre crochets, est à remplacer par une valeur de
+votre choix.
+Vous ne devez pas faire apparaitre de crochets
+dans vos lignes de commandes.
+
+.changer la fréquence d'un oscillateur:
+  [n°oscilo] f [valeur_en_hertz]
+
+.changer le volume d'un oscillateur:
+  [n°oscilo] v [valeur_de_0_a_100]
+
+.changer la panoramique d'un oscillateur:
+  [n°oscilo] p [valeur_de_-1_a_1]
+
+.activer ou desactiver le mode muet d'un
+oscillateur:
+    [n°oscilo] v m
+
+
+nb: [n°oscilo] est donc à remplacer par un
+nombre designant l'oscillateur de votre
+choix.
+
+__________________________________________________1
+                          quelques commandes utiles
+
+
+Vous pouvez utiliser les flèches de votre
+clavier pour vous déplacer dans l'historique des
+commandes.
+
+Les oscillateurs, bruits et séquenceurs
+affichent leurs parametres au survol de la souris.
+
+.réinitialiser le programme:
+  reset all
+
+.réinitialiser les oscillateurs:
+  reset
+
+.réinitialiser les séquenceurs :
+  l reset
+
+.réinitialiser un séquenceur :
+  l[id_sequencer] reset
+
+.démarrer/terminer un enregistrement (.wav):
+  rec
+
+__________________________________________________2
+                             paramètres par défault
+
+
+Si l'on indique pas de paramètre, le programme
+applique par défaut dans l'ordre suivant:
+fréquence, volume, panning au valeurs indiquées.
+
+.changer la fréquence d'un oscillateur:
+  [n°oscilo] [valeur_en_hertz]
+
+.changer la fréquence et le volume d'un
+oscillateur:
+  [n°oscilo] [valeur_en_hertz] [valeur_de_0_a_100]
+
+.changer la fréquence, le volume et la panoramique
+d'un oscillateur:
+  [n°oscilo] [valeur_en_hertz] [valeur_de_0_a_100]
+  [valeur_de_-1_a_1]
+
+__________________________________________________3
+                        manipuler plusieurs oscilos
+
+
+Il est possible de modifier les paramètres de
+plusieurs oscillateurs en une seule ligne de
+commande. Il faut alors définir une fourchette en
+indiquant un oscillateur de début et un
+oscillateur de fin.
+On peut également choisir ou non d'incrémenter
+la valeur. Utiliser le caratère de cesure + ou <
+pour selectionner plusieurs oscillateurs.
+
+.changer la fréquence de plusieurs oscillateurs:
+  [n°oscilo_debut]+[n°oscilo_fin] f
+  [valeur_en_hertz]+[increment_en_hertz]
+
+.changer le volume de plusieurs oscillateurs:
+  [n°oscilo_debut]+[n°oscilo_fin] v
+  [valeur_de_0_a_100]+[increment]
+
+.changer la panoramique de plusieurs oscillateurs:
+  [n°oscilo_debut]+[n°oscilo_fin] p
+  [valeur_de_-1_a_1]+[increment]
+
+Cette logique de fourchette et d'incrementation
+s'applique à toutes les autres commandes du
+programme. les increments sont facultatifs.
+
+__________________________________________________4
+                              vitesse de glissement
+
+
+On peut également changer la durée de glissement
+(fade) de chacun des paramètres. il s'agit de la
+durée (en seconde) que prend un paramètre à
+atteindre une nouvelle valeur en partant de sa
+valeur actuelle.
+
+.changer la durée du glissement de la fréquence
+d'un oscillateur:
+  [n°oscilo] f f [duree_en_secondes]
+
+.changer la durée du glissement du volume
+d'un oscillateur:
+  [n°oscilo] v f [duree_en_secondes]
+
+.changer la durée du glissement de la panoramique
+d'un oscillateur:
+  [n°oscilo] p f [duree_en_secondes]
+
+__________________________________________________5
+                            vitesse de glissement/2
+
+
+Il est également possible de changer les
+paramètres en assignant directement une durée
+de glissement.
+
+.changer la fréquence d'un oscillateur avec une
+durée de glissement:
+  [n°oscilo] f [valeur_en_hertz]
+  [duree_en_secondes]
+
+.changer le volume d'un oscillateur avec une durée
+de glissement:
+  [n°oscilo] v [valeur_de_0_a_100]
+  [duree_en_secondes]
+
+.changer la panoramique d'un oscillateur avec une
+durée de glissement:
+  [n°oscilo] p [valeur_de_-1_a_1]
+  [duree_en_secondes]
+
+__________________________________________________6
+                                    jouer des loops
+
+
+On peut activer ou desactiver un mode boucle (loop)
+sur chacun des paramètre.si le mode boucle est
+activé lorqu'un paramètre atteind sa nouvelle
+valeur il retourne à sa valeur d'origine etc...
+
+.activer/desactiver le mode boucle de la fréquence
+d'un oscillateur:
+  [n°oscilo] f l
+
+.activer/desactiver le mode boucle du volume d'un
+oscillateur:
+  [n°oscilo] v l
+
+.activer/desactiver le mode boucle de la
+panoramique d'un oscillateur:
+  [n°oscilo] p l
+
+.editer la boucle de la fréquence d'un oscillateur:
+  [n°oscilo] f l [valeur_depart_en_hertz]
+  [valeur_d'arrivée_en_hertz] [duree_en_secondes]
+
+.editer la boucle du volume d'un oscillateur:
+  [n°oscilo] v l [valeur_depart_en_hertz]
+  [valeur_d'arrivée_en_hertz] [duree_en_secondes]
+
+.editer la boucle de la panoramique d'un
+oscillateur:
+  [n°oscilo] p l [valeur_depart_en_hertz]
+  [valeur_d'arrivée_en_hertz] [duree_en_secondes]
+
+__________________________________________________7
+                                   notes de musique
+
+
+Plutot que d'indiquer des fréquences il vous est
+possible d'indiquer des notes de musiques:
+do re mi fa sol la si
+Vous pouvez utilisez les symbole # et b:
+do# lab ...
+Par défaut l'octave de la note sera l'octave n°1,
+pour specifier un octave utilisez le caratere de
+césure . après le nom de la note.
+
+.éditer la fréquence d'un oscillateurs avec
+une note de musique:
+  [n°oscilo] f [note].[octave]
+
+__________________________________________________8
+                                      bruits blancs
+
+
+On peut également manipuler des bruits blancs
+(leur n° est sur fond rouge).
+pour éditer les bruit, tout fonctionne de la même
+façon que pour les oscillateurs, il y a seulement
+un paramètre en plus à manipuler: la largeur du
+filtre que l'on applique au bruit (filterWitdh).
+Par défaut ce paramètre est le premier à etre
+pris en compte.
+La lettre correspondante à ce paramètre est w.
+
+.editer un bruit:
+  [n°bruit] [largeur_du_filtre_en_hertz]
+  [valeur_en_hertz] [valeur_de_0_a_100]
+  [valeur_de_-1_a_1]
+
+__________________________________________________9
+                                        séquenceurs
+
+
+Comment manipuler les séquenceur:
+la duree de chaque séquenceur est basée sur un
+nombre de battement par minute (bpm) ainsi
+qu'un nombre de mesure et un nombre de sous
+mesure (temps).
+l'identité du 1er séquenceur est 'h' (headlooper)
+l'identité du 2nd séquenceur est 'l' (looper)
+
+.activer la lecture d'un séquenceur:
+  [identité_du_séquenceur] play
+
+.mettre en pause un séquenceur:
+  [identité_du_séquenceur] pause
+
+.activer/desactiver le mode loop:
+    [identité_du_séquenceur] loop
+
+.arrêter un séquenceur:
+  [identité_du_séquenceur] stop
+
+.modifier le bpm d'un séquenceur:
+  [identité_du_séquenceur] bpm [valeur]
+
+.modifier le nombre de mesures d'un séquenceur:
+  [identité_du_séquenceur] mesure [valeur]
+
+.modifier le nombre de temps de par mesure d'un
+séquenceur:
+  [identité_du_séquenceur] temps [valeur]
+
+__________________________________________________10
+                                      séquenceurs/2
+
+
+Il vous est possible d'assigner n'importe quelle
+commande à un séquenceur en lui indiquant sur
+quelle mesure et quel temps l'exectuer.
+On sépare la mesure et le temps choisis avec le
+caratère de césure .
+
+.assigner une ligne de commande à un séquenceur sur
+un temps donné:
+  [identité_du_séquenceur]
+  [mesure_choisie].[temps_choisi]
+  [votre_ligne_de_commande]
+
+.retirer une ligne de commande à un séquenceur sur
+un temps donné:
+  [identité_du_séquenceur]
+  [mesure_choisie].[temps_choisi]
+  remove [n°_de_la_commande]
+
+.retirer toutes les commandes d'un séquenceur sur un
+temps donné:
+  [identité_du_séquenceur]
+  [mesure_choisie].[temps_choisi] remove all
+
+__________________________________________________11
+                                        sauvegardes
+
+
+Il vous est possible de sauvegarder votre set
+actuel pour le charger lorsque vous le souhaitez
+
+.sauvegarder les paramètre du set:
+  save set [nom_de_la_sauvegarde]
+
+.charger un set existant:
+  load set [nom_de_la_sauvegarde]
+
+ou vous pouvez sauvegarder les paramètres actuels
+des oscillateurs et non ceux des séquencer:
+
+.sauvegarder les paramètres des oscillateurs:
+  save [nom_de_la_sauvegarde]
+
+.charger un fichier de paramètre d'oscillateurs:
+  load [nom_de_la_sauvegarde]
