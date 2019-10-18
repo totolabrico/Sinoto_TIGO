@@ -57,7 +57,7 @@ function instru(Id, type, X, Y) {
       if (Value.length > 0) { // si le tableau value n'est pas vide
         for (var i = 0; i < Value.length; i++) { // je verifie que les values sont correctes
           if (Value[i].toString() == "NaN") {
-            clavier.addToHisto("uncorrect value, please switch it into a number",true);
+            clavier.doLog("uncorrect value, please switch it into a number",true);
             lineIsCorrect = false; // si elle ne le sont pas alors la commande ne sera pas executée
           }
         }
