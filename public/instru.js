@@ -127,8 +127,8 @@ function instru(Id, type, X, Y) {
 
       textAlign(RIGHT);
       noStroke();
+      textSize(11);
 
-      //////////////////////////////////////// attention ici je cible le volume avec this.params[1] desormais faux pour les bruits
       let volCol = color(255);
 
       var paramIdAff = 0;
@@ -147,7 +147,7 @@ function instru(Id, type, X, Y) {
          if(this.type=="noise")stroke(255);
        }
       fill(255);
-      if (this.type == "noise") fill(255,0,0);
+      if (this.type == "noise") fill(220,0,0);
       rect(this.x, this.y - 10, this.larg, this.haut);
       noStroke();
       fill(0);
@@ -176,21 +176,23 @@ function instru(Id, type, X, Y) {
       if (this.mouseIsOver) {
         stroke(255);
         fill(0);
-        rect(this.x+this.larg, this.y-this.haut , this.params.length * 130, 150);
+        rect(sinotoX + 10, sinotoY + sinotoHeight - consoleHeight+12, sinotoWidth - 20, consoleHeight -82);
         noStroke();
         textSize(14);
         fill(255);
-        text(this.type+" n°"+this.id, this.x + 30, this.y + 10)
+        textAlign(RIGHT);
+        text(this.type+" n°"+this.id, sinotoX +sinotoWidth- 20, sinotoY + sinotoHeight - consoleHeight+40)
+        textAlign(LEFT);
 
 
         for (var j = 0; j < this.params.length; j++) { // affichage des categorie (frequence, volume, panning, space)
           fill(255, 0, 0);
           textSize(12);
-          text(this.paramNames[0][j], this.x + incX + 30 + j * 130, this.y + 30)
+          text(this.paramNames[0][j], sinotoX + incX + 20 + j * 130, sinotoY + sinotoHeight - consoleHeight+40)
           fill(255);
           textSize(11);
           for (var i = 0; i < this.params[j].length; i++) { // afichage des parametre
-              text(this.paramNames[1][i] + " : " + Math.round(this.params[j][i] * 100) / 100, this.x + incX + 30 + j * 130, this.y + 50 + i * 15);
+              text(this.paramNames[1][i] + " : " + Math.round(this.params[j][i] * 100) / 100, sinotoX + incX + 20 + j * 130, sinotoY + sinotoHeight - consoleHeight+60 + i * 12);
           }
         }
       }

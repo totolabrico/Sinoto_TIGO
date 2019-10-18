@@ -1,27 +1,98 @@
 
 @font-face {
- font-family: oneFont;
- src: url("data/cnr.otf");
+  font-family: oneFont;
+ /*font-family: oneFont;*/
+ src: url("data/CourierPrime.ttf");
 }
-p{
 
-margin-left: auto;
-
+@font-face {
+  font-family: secondFont;
+ /*font-family: oneFont;*/
+ src: url("data/cour.ttf");
 }
 
 body {
-/*  position: fixed;*/
-font-family: oneFont,sans-serif;
-
-background-color: rgb(0);
+font-family: oneFont;
+text-align: left;
+background-color: rgb(0,0,0);
+margin-top: 0;
+margin-left: 0;
+overflow: hidden;
 
 }
 
+
+
+h1{
+  margin-top: 0px;
+  padding-top: 0px;
+  font-size: 1.5em;
+  text-align: left;
+  font-weight: lighter;
+}
+
+h2{
+  text-align: left;
+  font-weight: lighter;
+
+}
+
+#aideTitles{
+  text-align: left;
+  font-weight: normal;
+  font-size: 1.3em;
+  color: rgb(255,0,0);
+
+}
+h4{
+  text-align: left;
+  font-weight: lighter;
+  font-size: 1.1em;
+
+}
+
+p{
+color:rgb(255,255,255);
+margin-left: auto;
+text-align: justify;
+font-size: 1.1em;
+
+}
+
+::-webkit-scrollbar {
+  /*scrollbar-color: rgb(255,255,255);*/
+    display: none;
+}
+
+aide{
+
+  margin-top: : 0px;
+  padding-top: 0px;
+  font-family: oneFont;
+  color:rgb(255,255,255);
+  font-size: 0.7em;
+  width:400px;
+  height: 560px;
+  text-align: justify;
+  overflow: auto;
+    scrollbar-width: none;
+}
+
+.loadText{
+
+  font-size: 1em;
+  margin-top: 100px;
+  margin-left: 100px;
+}
+
+
 input{
-/*	font-family: oneFont,sans-serif;*/
+	font-family: secondFont;
   border:none;
-  font-size: 0.75em;
-  font: courrier.
+  font-size: 1.7em;
+  color: rgb(0,0,0);
+/*  background-color: rgba(0,0,0,0);*/
+  font-weight: bolder;
 }
 
 .loader {

@@ -21,7 +21,7 @@ for(var l=0;l<nblooper;l++){
             for (var j=2;j<superlooper[l].timelineParams[1][i].length;j++){
             //  console.log(superlooper[l].timelineParams[1][i][j]);
             if(superlooper[l].timelineParams[0][0]-superlooper[l].timelineParams[1][i][0]<pas*2 ){
-               commandes.analyse(superlooper[l].timelineParams[1][i][j]);
+               commandes.analyse(superlooper[l].timelineParams[1][i][j],false);
                saves.saveParams("backup",true);
              }
             }
@@ -79,7 +79,7 @@ for(var l=0;l<nblooper;l++){
       if (idParam == 3) instrus[idInstru].ins.pan(Value);
 
     }
-    if (instrus[idInstru].type == "sine") { // si il s'agit d'un bruit
+    if (instrus[idInstru].type == "oscilo") { // si il s'agit d'un bruit
       if (idParam == 0) instrus[idInstru].ins.freq(Value);
       if (idParam == 1) instrus[idInstru].ins.amp(Value / 1000);
       if (idParam == 2) instrus[idInstru].ins.pan(Value);
