@@ -5,9 +5,7 @@
 
 
 //////// PRIORITE MAXIMA : CI DESSOUS
-//////// giter le projet
 //////// utiliser le volume correctement en ce qui concerne les fades
-
 
 ///////// ajouter la phase en tant que parametre fondamentale
 ////////// les pannings parfois font tout craquer
@@ -23,6 +21,7 @@
 let socket; // declaration du socket
 let helpContent = ""; // contenu texte de la rubrique d'aide
 let helpStrings;
+var helpAff=true; // affichage ou non de la rubrique d'aide
 
 let myFont; // creation de la variable pour la typo
 var inp; // input : clavier
@@ -109,12 +108,15 @@ function setAff() {
   mywidth = windowWidth;
   myheight = windowHeight;
   sinotoCnv = createCanvas(mywidth, myheight);
-
-
   sinotoCnv.position(0, 0);
-
+if (helpAff){
   sinotoX = (mywidth - (sinotoWidth + 500)) / 2;
+}
+else{
+  sinotoX = (mywidth-sinotoWidth)/ 2;
+}
   sinotoY = (myheight - sinotoHeight) / 2;
+
 
   if (permission) {
     background(0);
@@ -150,10 +152,11 @@ function setAff() {
 
   inp.size(sinotoWidth - 20, 40); // taile du clavier
   //  inp.style('font-family', 'cnr'); // font du clavier
+  if (helpAff){
   aide = createElement('aide', helpContent);
   aide.position(sinotoX + sinotoWidth + 100, sinotoY+22 );
   aide.size(sinotoWidth*2/3,sinotoHeight-32);
-
+}
   if (permission) {
     document.getElementById("aideTitles").style.color="red";
 

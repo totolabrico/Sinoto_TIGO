@@ -108,6 +108,9 @@ var commandes = {
           else {
             socket.emit('load', mots[1][0][0], false);
           }
+        case "help":
+        helpAff=!helpAff;
+        setAff();
           break;
         default:
           if (mots.length >= 2) this.instruCom();
