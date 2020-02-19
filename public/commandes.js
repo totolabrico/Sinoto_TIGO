@@ -19,7 +19,7 @@ var commandes = {
 
     var phrase = [];
     phrase = split(inLine, " & ");
-    for (var i = 0; i < phrase.length; i++) this.analyseLine(phrase[i]);
+    for (var i = 0; i < phrase.length; i++) this.analyseLine(phrase[i], broadcast);
 
   },
 
@@ -102,15 +102,18 @@ var commandes = {
           else {
             saves.saveParams(mots[1][0][0], false);
           }
+          broadOn = false;
           break;
         case "load":
           if (mots[1][0][0] == "set") socket.emit('load', mots[2][0][0], true);
           else {
             socket.emit('load', mots[1][0][0], false);
           }
+          break;
         case "help":
-        helpAff=!helpAff;
-        setAff();
+          helpAff = !helpAff;
+          broadOn = false;
+          setAff();
           break;
         default:
           if (mots.length >= 2) this.instruCom();

@@ -25,7 +25,7 @@ function newConnection(socket) {
 
   function cmdLine(data) {
     socket.broadcast.emit('Servorcmd', data);
-    console.log(data);
+    console.log('broadcast',data);
   }
 
   function saveFile(name,data) {

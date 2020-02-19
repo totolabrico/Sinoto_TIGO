@@ -49,6 +49,11 @@ var clavier = {
 
   },
 
+  getSocketEnter: function(lineToProcess) {
+    commandes.analyse(lineToProcess,false); // envoi de la la ligne a la fontion analyse de commandes
+    this.addToHisto(lineToProcess)
+  },
+
   addToHisto: function(lineToProcess) {
     posYhisto = 0;
     historique.push(lineToProcess);

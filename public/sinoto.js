@@ -5,6 +5,9 @@
 
 
 //////// PRIORITE MAXIMA : CI DESSOUS
+
+//////// mettre un mode hors ligne
+
 //////// utiliser le volume correctement en ce qui concerne les fades
 
 ///////// ajouter la phase en tant que parametre fondamentale
@@ -19,6 +22,7 @@
 
 
 let socket; // declaration du socket
+var connected=true;
 let helpContent = ""; // contenu texte de la rubrique d'aide
 let helpStrings;
 var helpAff=true; // affichage ou non de la rubrique d'aide
@@ -49,6 +53,7 @@ var yInstru; // variable pour affichage des Instrulateurs
 var posYhisto = 0; //// valeur pour incrementation au scroll de la souris sur la console
 
 var aide;
+
 
 
 var permission = false; // la permission active l'affichage du programme
@@ -88,9 +93,9 @@ function setup() {
   for (var i = 1; i < nboscilo + 1; i++) instrus.push(new instru(i - 1, "oscilo", 0, 0)); // creation des Instrulos
   for (var i = nboscilo + 1; i < nbinstru + 1; i++) instrus.push(new instru(i - 1, "noise", 0, 0)); // creation des Instrulos
 
-  socket = io.connect('http://sinoto.fr:3000'); // creation du socket
+  socket = io.connect('localhost:3000'); // creation du socket
   socket.on('Servorcmd', servorcmd); // le socket ecoute les messages 'Servorcmd' et applique la commande servorcmd
-  socket.on('getData', saves.loadFile); // le socket ecoute les messages 'getData' et applique la commande servorcmd
+  socket.on('getData', saves.loadFile); // le socket ecoute les messages 'getData' et applique la commande saves.loadfile
   socket.emit('load', "backup", true); //////////////////////////////// A DECOMMENTER SOCKET !!!
 
   setAff();
@@ -196,9 +201,10 @@ function draw() {
       document.getElementById("aideTitles").style.color="red";
       firstforperm = false;
     }
-    //  textSize(20);
-    //  textAlign(RIGHT);
-    //  text("sinoto~", sinotoX-30, sinotoY-10);
+
+//      textSize(20);
+//      textAlign(RIGHT);
+//      text("sinoto~", sinotoX-30, sinotoY-10);
     // stroke(255);
     // noFill();
     // rect(sinotoX, sinotoY, sinotoWidth, sinotoHeight);
@@ -247,6 +253,6 @@ function mouseWheel(event) { // pour scroller dans l'historique
 function servorcmd(lineFromServor) {
   if (permission) {
     console.log("line from sinotoTestyServor :" + lineFromServor);
-    clavier.getEnter(lineFromServor);
+    clavier.getSocketEnter(lineFromServor);
   }
 }
