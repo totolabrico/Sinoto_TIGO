@@ -1,4 +1,4 @@
-
+/*////////////////////////////////////////////// FONT //////////////////////////////////////////////*/
 @font-face {
   font-family: oneFont;
  /*font-family: oneFont;*/
@@ -11,6 +11,8 @@
  src: url("data/cour.ttf");
 }
 
+/*////////////////////////////////////////////// GENERAL //////////////////////////////////////////////*/
+
 body {
 font-family: oneFont;
 text-align: left;
@@ -21,14 +23,13 @@ overflow: hidden;
 
 }
 
-
-
 h1{
   margin-top: 0px;
   padding-top: 0px;
-  font-size: 1.5em;
+  margin-bottom: -5%;
+  font-size: 6em;
   text-align: left;
-  font-weight: lighter;
+  font-weight:lighter;
 }
 
 h2{
@@ -37,35 +38,33 @@ h2{
 
 }
 
-#aideTitles{
-  text-align: left;
-  font-weight: normal;
-  font-size: 1.3em;
-  color: rgb(255,0,0);
 
-}
 h4{
   text-align: left;
   font-weight: lighter;
-  font-size: 1.1em;
+  font-size: 1.2em;
 
 }
 
-p{
-color:rgb(255,255,255);
-margin-left: auto;
-text-align: justify;
-font-size: 1.1em;
+p{text-align: center;}
 
-}
+
 
 ::-webkit-scrollbar {
   /*scrollbar-color: rgb(255,255,255);*/
     display: none;
 }
+/*////////////////////////////////////////////// HELP //////////////////////////////////////////////*/
+
+#aideTitles{
+  width: 100%;
+  text-align: left;
+  font-weight: normal;
+  font-size: 1.6em;
+  color: rgb(255,0,0);
+}
 
 aide{
-
   margin-top: : 0px;
   padding-top: 0px;
   font-family: oneFont;
@@ -85,6 +84,32 @@ aide{
   margin-left: 100px;
 }
 
+.exemple{
+  color: black;
+  background-color: white;
+  padding-top: 2%;
+  padding-left: 2%;
+  font-weight: bold;
+  margin-top: 1%;
+}
+
+.syntaxe{
+  text-align: left;
+  font-weight: bold;
+  padding-top: 1%;
+  padding-bottom: 2%;
+}
+
+.paragraphe{
+color:rgb(255,255,255);
+margin-left: auto;
+text-align: justify;
+font-size: 1.2em;
+
+}
+
+/*////////////////////////////////////////////// CLAVIER //////////////////////////////////////////////*/
+
 
 input{
 	font-family: secondFont;
@@ -93,15 +118,17 @@ input{
   color: rgb(0,0,0);
 /*  background-color: rgba(0,0,0,0);*/
   font-weight: bolder;
+text-indent: 2%;
 }
 
+/*////////////////////////////////////////////// LOADER //////////////////////////////////////////////*/
+
 .loader {
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 10%;
-  margin-bottom: auto;
-  border: 160px solid #000000; /* Light grey */
-  border-top: 160px solid #FFFFFF; /* Blue */
+margin: auto;
+margin-top:15%;
+
+  border: 100px solid #000000; /* Light grey */
+  border-top: 100px solid #FFFFFF; /* Blue */
   border-radius: 50%;
   width: 10px;
   height: 10px;

@@ -1,31 +1,19 @@
 //// A FAIRE
-
-
 // socket a decommenter : 4 dans le sinoto.js , 1 paragraphe dans commandes, 1 dans saves, 1 dans clavier
-
-
 //////// PRIORITE MAXIMA : CI DESSOUS
-
 //////// mettre un mode hors ligne
-
 //////// utiliser le volume correctement en ce qui concerne les fades
-
 ///////// ajouter la phase en tant que parametre fondamentale
 ////////// les pannings parfois font tout craquer
-
-
 ////// COMMENTER en particulier solfege, commandes, timeline
 //// scale : peufra : pour eviter que le son ne dépase un certain niveau
 //// compressor
-
 //////////////////// BIEN FAIRE DES LOGS
-
-
 let socket; // declaration du socket
-var connected=true;
+var connected = true;
 let helpContent = ""; // contenu texte de la rubrique d'aide
 let helpStrings;
-var helpAff=true; // affichage ou non de la rubrique d'aide
+var helpAff = true; // affichage ou non de la rubrique d'aide
 
 let myFont; // creation de la variable pour la typo
 var inp; // input : clavier
@@ -54,9 +42,6 @@ var posYhisto = 0; //// valeur pour incrementation au scroll de la souris sur la
 
 var aide;
 
-
-
-var permission = false; // la permission active l'affichage du programme
 var firstforperm = true;
 
 var nblooper = 4;
@@ -70,7 +55,6 @@ function preload() {
 
 function touchStarted() {
   getAudioContext().resume(); // autorise le contexte audio
-  permission = true; // la permission active l'affichage du programme
 }
 
 
@@ -83,7 +67,7 @@ function setup() {
   arpeg = new arpegiator;
   eliane = new composer;
   rec = new recorder();
-//  aide = createElement('aide', helpContent);
+  //  aide = createElement('aide', helpContent);
 
   //smooth();
   frameRate(30);
@@ -99,6 +83,7 @@ function setup() {
   socket.emit('load', "backup", true); //////////////////////////////// A DECOMMENTER SOCKET !!!
 
   setAff();
+//  getAudioContext().resume(); // autorise le contexte audio
 
 }
 
@@ -109,25 +94,17 @@ function windowResized() {
 
 function setAff() {
 
-
   mywidth = windowWidth;
   myheight = windowHeight;
   sinotoCnv = createCanvas(mywidth, myheight);
   sinotoCnv.position(0, 0);
-if (helpAff){
-  sinotoX = (mywidth - (sinotoWidth + 500)) / 2;
-}
-else{
-  sinotoX = (mywidth-sinotoWidth)/ 2;
-}
+  if (helpAff) {
+    sinotoX = (mywidth - (sinotoWidth + 500)) / 2;
+  } else {
+    sinotoX = (mywidth - sinotoWidth) / 2;
+  }
   sinotoY = (myheight - sinotoHeight) / 2;
 
-
-  if (permission) {
-    background(0);
-  } else {
-    background(255);
-  }
   yOsci = sinotoY; // position y initiale des instrument
   xOsci = sinotoX + 10; // position x initiale des instrument
   yInstru = yOsci; // variable pour affichage des Instrulateurs
@@ -157,57 +134,18 @@ else{
 
   inp.size(sinotoWidth - 20, 40); // taile du clavier
   //  inp.style('font-family', 'cnr'); // font du clavier
-  if (helpAff){
-  aide = createElement('aide', helpContent);
-  aide.position(sinotoX + sinotoWidth + 100, sinotoY+22 );
-  aide.size(sinotoWidth*2/3,sinotoHeight-32);
-}
-  if (permission) {
-    document.getElementById("aideTitles").style.color="red";
-
-  } else {
-    document.getElementById("aideTitles").style.color="white";
+  if (helpAff) {
+    aide = createElement('aide', helpContent);
+    aide.position(sinotoX + sinotoWidth + 100, sinotoY + 22);
+    aide.size(sinotoWidth * 2 / 3, sinotoHeight - 32);
   }
-
 
 }
 
 function draw() {
 
-  //rect(0,0,mywidth,myheight);
-
-  if (permission == false) {
-    background(255);
-    //  imageMode(CENTER);
-    //  image(logo, width / 2, height / 2);
-  //  fill(200);
-  //  textSize(300);
-  //  textAlign(CENTER, CENTER);
-  //  text(">~", width / 2, height / 2);
-
-    fill(0);
-    textSize(80);
-    text("sinoto", sinotoX + sinotoWidth / 2 - 8, sinotoY + sinotoHeight / 2);
-    textSize(20);
-    text("click to start", sinotoX + sinotoWidth / 2, sinotoY + sinotoHeight / 2 + 40);
-    textAlign(LEFT, BASELINE);
-  }
-
-  if (permission) {
-
     background(0);
 
-    if (firstforperm) {
-      document.getElementById("aideTitles").style.color="red";
-      firstforperm = false;
-    }
-
-//      textSize(20);
-//      textAlign(RIGHT);
-//      text("sinoto~", sinotoX-30, sinotoY-10);
-    // stroke(255);
-    // noFill();
-    // rect(sinotoX, sinotoY, sinotoWidth, sinotoHeight);
     fill(0);
     rect(sinotoX, sinotoY, sinotoWidth, sinotoHeight);
     fill(255);
@@ -215,44 +153,36 @@ function draw() {
     textSize(11);
     clavier.aff(); // affichage de la console
     textSize(12);
-    //  help.aff(sinotoX + sinotoWidth, sinotoY, 500, sinotoHeight); // affichage de la rubrique d'aide
     if (rec.recIsOn == true) rec.aff(); // affichage du recorder
-   for (var i = 0; i <= nblooper - 1; i++) superlooper[i].aff(sinotoY +(nbOsciPerColumn + nbBruitPerColumn) * 18 +22+ (timelineHeight + 6) * i); // affichage des timelines
-  //  for (var i = nblooper - 1; i >= 0; i--) superlooper[i].aff(sinotoY + (nbOsciPerColumn + nbBruitPerColumn) * 20 + 30 * i); // affichage des timelines
-
+    for (var i = 0; i <= nblooper - 1; i++) superlooper[i].aff(sinotoY + (nbOsciPerColumn + nbBruitPerColumn) * 18 + 22 + (timelineHeight + 6) * i); // affichage des timelines
+    //  for (var i = nblooper - 1; i >= 0; i--) superlooper[i].aff(sinotoY + (nbOsciPerColumn + nbBruitPerColumn) * 20 + 30 * i); // affichage des timelines
     for (var i = 0; i < nbinstru; i++) instrus[i].aff(); // affichage des instrument
     for (var i = 0; i < nbinstru; i++) instrus[i].affInfo(); // affichage des parametres des instruments au survol de la souris
     fades.doFade(); // fades des instruments
 
   }
 
-}
+
 
 
 function keyPressed() {
-  if (permission) clavier.gethit(key, keyCode);
+clavier.gethit(key, keyCode);
 }
 
 
 
 function mouseWheel(event) { // pour scroller dans l'historique
-
-  if (permission) {
-
     if (mouseY > sinotoY + sinotoHeight - consoleHeight && mouseY < sinotoY + sinotoHeight - 40 &&
       mouseX > sinotoX + 10 && mouseX < sinotoX + sinotoWidth - 10) {
       console.log("scroll");
       if (event.delta > 0 && posYhisto < posInGlobalHisto) posYhisto += 0.5;
       if (event.delta < 0 && posYhisto > 0) posYhisto -= 0.5;
-    }
-
 
   }
 }
 
 function servorcmd(lineFromServor) {
-  if (permission) {
     console.log("line from sinotoTestyServor :" + lineFromServor);
     clavier.getSocketEnter(lineFromServor);
-  }
+
 }
