@@ -78,13 +78,16 @@ var commandes = {
       switch (mots[0][0][0]) {
         case "reset":
           clavier.constructLog("reset : ", false);
-          for (var i = 0; i < nbinstru; i++) instrus[i].reset(); /// reset des oscilos et bruits
+          if (mots.length == 1)
+            for (var i = 0; i < nbinstru; i++) instrus[i].reset(0, nboscilo); /// reset des oscilos et bruits
           if (mots.length == 2) { // reset des timelines
             if (mots[1][0][0] == "all") { // reset des timelines
               clavier.constructLog("global reset of the program", true);
-              for (var i = 0; i < nblooper; i++) {
-                superlooper[i].reset();
-              }
+              for (var i = 0; i < nbinstru; i++) instrus[i].reset(0, nboscilo);
+              for (var i = 0; i < nblooper; i++) superlooper[i].reset();
+
+            } else {
+              this.resetCom();
             }
           } else {
             clavier.constructLog("oscilos", true);
@@ -126,6 +129,18 @@ var commandes = {
 
   },
 
+
+  resetCom: function() {
+    var from = int(mots[1][0][0]);
+    var to = int(mots[1][0][1]);
+    if (to != 0)
+      for (var i = from; i < to + 1; i++) instrus[i].reset();
+    else {
+      instrus[from].reset();
+    }
+
+  },
+
   instruCom: function() {
 
     var comIsGood = true;
@@ -138,7 +153,6 @@ var commandes = {
     //clavier.constructLog(mots[0][0][0], false);
     if (mots[0][0][1] != mots[0][0][0]) clavier.constructLog(" < " + mots[0][0][1], false);
     if (comIsGood) clavier.constructLog(" : ", false);
-
 
     var values = new Array();
     var cmd = "a"; // variable pour stocker la commande : w f v p

@@ -8,7 +8,7 @@ function instru(Id, type, X, Y) {
   this.larg = 20; // taille du rectangle de l'id en x
   this.haut = 12; // taille du rectangle de l'id en y
   this.params = new Array(3); // tableau a double entrée pour les differents parametre : frequence, volume, panning, loop, periode de Fade
-  this.listPeriode = [0, 10, 10, 10];
+  this.listPeriode = [0, 5, 5, 0];
   this.paramNames = [
     ["frequence", "volume", "panning"],
     ["to", "from", "current", "loop", "fade", "mute"]
@@ -115,9 +115,18 @@ function instru(Id, type, X, Y) {
 
     this.reset = function() { // remise a 0 des parametres
 
-      for (var i = 0; i < this.params.length; i++) this.params[i] = [0, 0, 0, false, this.listPeriode[i]];
+      for (var i = 0; i < this.params.length; i++){
+        if (this.type == "oscilo") this.params[i] = [0, 0, 0, false, this.listPeriode[i]];
+        if (this.type == "noise"){
+          if(i==0)this.params[i] = [0, 0, 0, false, this.listPeriode[3]];
+          else{
+            this.params[i] = [0, 0, 0, false, this.listPeriode[i-1]];
+          }
+        }
+
+       }
       this.params[1].push(false);
-      if (this.type == "oscilo") this.ins.freq(1); // on a pas le droit de dire 0 apparement du coup 1, reste inaudible
+      if (this.type == "oscilo") this.ins.freq(0.1); // on a pas le droit de dire 0 apparement du coup 1, reste inaudible
       this.ins.amp(0);
       this.ins.pan(0);
 

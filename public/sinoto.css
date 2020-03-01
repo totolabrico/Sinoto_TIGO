@@ -1,90 +1,99 @@
 /*////////////////////////////////////////////// FONT //////////////////////////////////////////////*/
 @font-face {
   font-family: oneFont;
- /*font-family: oneFont;*/
- src: url("data/CourierPrime.ttf");
+  /*font-family: oneFont;*/
+  src: url("data/CourierPrime.ttf");
 }
 
 @font-face {
   font-family: secondFont;
- /*font-family: oneFont;*/
- src: url("data/cour.ttf");
+  /*font-family: oneFont;*/
+  src: url("data/cour.ttf");
 }
 
 /*////////////////////////////////////////////// GENERAL //////////////////////////////////////////////*/
-
 body {
-font-family: oneFont;
-text-align: left;
-background-color: rgb(0,0,0);
-margin-top: 0;
-margin-left: 0;
-overflow: hidden;
-
+  font-family: oneFont;
+  text-align: left;
+  background-color: rgb(0, 0, 0);
+  margin-top: 0;
+  margin-left: 0;
+  overflow: hidden;
 }
 
-h1{
+h1 {
   margin-top: 0px;
   padding-top: 0px;
   margin-bottom: -5%;
   font-size: 6em;
   text-align: left;
-  font-weight:lighter;
+  font-weight: lighter;
 }
 
-h2{
+h2 {
   text-align: left;
   font-weight: lighter;
-
 }
 
-
-h4{
+h4 {
   text-align: left;
   font-weight: lighter;
   font-size: 1.2em;
-
 }
 
-p{text-align: center;}
-
-
+p {
+  text-align: center;
+}
 
 ::-webkit-scrollbar {
-  /*scrollbar-color: rgb(255,255,255);*/
-    display: none;
+  width: 0px;
+  height: 10px;
+  margin-left: 1%;
 }
-/*////////////////////////////////////////////// HELP //////////////////////////////////////////////*/
 
-#aideTitles{
+::-webkit-scrollbar-thumb {
+  /*height: 0.5em;*/
+/*  background: #ccc -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgb(240, 240, 240)), to(rgb(250, 250, 250)));*/
+  -webkit-border-radius: 0px;
+  -webkit-border-color: red;
+}
+
+/*////////////////////////////////////////////// HELP //////////////////////////////////////////////*/
+#aideTitles {
   width: 100%;
   text-align: left;
   font-weight: normal;
   font-size: 1.6em;
-  color: rgb(255,0,0);
+  color: rgb(255, 0, 0);
 }
 
-aide{
+aide {
   margin-top: : 0px;
   padding-top: 0px;
   font-family: oneFont;
-  color:rgb(255,255,255);
+  color: rgb(255, 255, 255);
   font-size: 0.7em;
-  width:400px;
+  width: 400px;
   height: 560px;
   text-align: justify;
   overflow: auto;
-    scrollbar-width: none;
+  scrollbar-width:none;
+
 }
 
-.loadText{
+.allhelp {
+  overflow-y: none;
+  scrollbar-color: black;
+  scrollbar-background-color:black;
+}
 
+.loadText {
   font-size: 1em;
   margin-top: 100px;
   margin-left: 100px;
 }
 
-.exemple{
+.exemple {
   color: black;
   background-color: white;
   padding-top: 2%;
@@ -93,42 +102,39 @@ aide{
   margin-top: 1%;
 }
 
-.syntaxe{
+.syntaxe {
   text-align: left;
   font-weight: bold;
   padding-top: 1%;
   padding-bottom: 2%;
 }
 
-.paragraphe{
-color:rgb(255,255,255);
-margin-left: auto;
-text-align: justify;
-font-size: 1.2em;
-
+.paragraphe {
+  color: rgb(255, 255, 255);
+  margin-left: auto;
+  text-align: justify;
+  font-size: 1.2em;
 }
 
 /*////////////////////////////////////////////// CLAVIER //////////////////////////////////////////////*/
-
-
-input{
-	font-family: secondFont;
-  border:none;
+input {
+  font-family: secondFont;
+  border: none;
   font-size: 1.7em;
-  color: rgb(0,0,0);
-/*  background-color: rgba(0,0,0,0);*/
+  color: rgb(0, 0, 0);
+  /*  background-color: rgba(0,0,0,0);*/
   font-weight: bolder;
-text-indent: 2%;
+  text-indent: 2%;
 }
 
 /*////////////////////////////////////////////// LOADER //////////////////////////////////////////////*/
-
 .loader {
-margin: auto;
-margin-top:15%;
-
-  border: 100px solid #000000; /* Light grey */
-  border-top: 100px solid #FFFFFF; /* Blue */
+  margin: auto;
+  margin-top: 15%;
+  border: 100px solid #000000;
+  /* Light grey */
+  border-top: 100px solid #FFFFFF;
+  /* Blue */
   border-radius: 50%;
   width: 10px;
   height: 10px;
@@ -136,6 +142,11 @@ margin-top:15%;
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }

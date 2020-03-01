@@ -11,32 +11,32 @@ var fades = {
     milli = millis();
     pas = milli - lastMilli; // je recupere la difference en millis entre 2 rafraichissement du programme
 
-for(var l=0;l<nblooper;l++){
-    if(superlooper[l].timelineParams[0][1]==true){ // si la timeline est en mode play
-      console.log(superlooper[l].timelineParams[0][1]);
+    for (var l = 0; l < nblooper; l++) {
+      if (superlooper[l].timelineParams[0][1] == true) { // si la timeline est en mode play
+        console.log(superlooper[l].timelineParams[0][1]);
 
-      for(var i=0;i<superlooper[l].nbtoggles;i++){
-        if(superlooper[l].timelineParams[0][0]>superlooper[l].timelineParams[1][i][0] && superlooper[l].timelineParams[1][i][1]==false){
-          if(superlooper[l].timelineParams[1][i].length>2){
-            for (var j=2;j<superlooper[l].timelineParams[1][i].length;j++){
-            //  console.log(superlooper[l].timelineParams[1][i][j]);
-            if(superlooper[l].timelineParams[0][0]-superlooper[l].timelineParams[1][i][0]<pas*2 ){
-               commandes.analyse(superlooper[l].timelineParams[1][i][j],false);
-               saves.saveParams("backup",true);
-             }
+        for (var i = 0; i < superlooper[l].nbtoggles; i++) {
+          if (superlooper[l].timelineParams[0][0] > superlooper[l].timelineParams[1][i][0] && superlooper[l].timelineParams[1][i][1] == false) {
+            if (superlooper[l].timelineParams[1][i].length > 2) {
+              for (var j = 2; j < superlooper[l].timelineParams[1][i].length; j++) {
+                //  console.log(superlooper[l].timelineParams[1][i][j]);
+                if (superlooper[l].timelineParams[0][0] - superlooper[l].timelineParams[1][i][0] < pas * 2) {
+                  commandes.analyse(superlooper[l].timelineParams[1][i][j], false);
+                  saves.saveParams("backup", true);
+                }
+              }
             }
+            superlooper[l].timelineParams[1][i][1] = true;
           }
-          superlooper[l].timelineParams[1][i][1]=true;
+        }
+        superlooper[l].timelineParams[0][0] += pas; // j'incremente son horloge
+        if (superlooper[l].timelineParams[0][0] >= superlooper[l].looplength) {
+          for (var i = 0; i < superlooper[l].nbtoggles; i++) superlooper[l].timelineParams[1][i][1] = false;
+          superlooper[l].timelineParams[0][0] = 0; // si son horloge dépasse la durée, je remet l'horloge à zero
+          if (superlooper[l].timelineParams[0][2] == false) superlooper[l].timelineParams[0][1] = false; // si la loop n'est pas active alors je stope la timeline
         }
       }
-      superlooper[l].timelineParams[0][0]+=pas; // j'incremente son horloge
-      if(superlooper[l].timelineParams[0][0]>=superlooper[l].looplength){
-        for(var i=0;i<superlooper[l].nbtoggles;i++)superlooper[l].timelineParams[1][i][1]=false;
-        superlooper[l].timelineParams[0][0]=0; // si son horloge dépasse la durée, je remet l'horloge à zero
-        if(superlooper[l].timelineParams[0][2]==false)superlooper[l].timelineParams[0][1]=false; // si la loop n'est pas active alors je stope la timeline
-      }
     }
-  }
 
     for (var i = 0; i < nbinstru; i++) { // je verifie si il y a des fades a effectuer
 
@@ -72,18 +72,20 @@ for(var l=0;l<nblooper;l++){
   },
   applyFade: function(idInstru, idParam, Value) { // j'applique les parametre aux instrus
 
+    var coefAmp = 0;
+    if (instrus[idInstru].params[0][2]!=0)coefAmp=1/(40*instrus[idInstru].params[0][2]);
     if (instrus[idInstru].type == "noise") { // si il s'agit d'un oscilo
       if (idParam == 0) instrus[idInstru].filter.res(Value);
       if (idParam == 1) instrus[idInstru].filter.freq(Value);
-      if (idParam == 2) instrus[idInstru].ins.amp(Value / 1000);
+      if (idParam == 2) instrus[idInstru].ins.amp(Value/1000);
       if (idParam == 3) instrus[idInstru].ins.pan(Value);
 
     }
     if (instrus[idInstru].type == "oscilo") { // si il s'agit d'un bruit
       if (idParam == 0) instrus[idInstru].ins.freq(Value);
-      if (idParam == 1) instrus[idInstru].ins.amp(Value / 1000);
+      if (idParam == 1) instrus[idInstru].ins.amp(Value *coefAmp*2);
       if (idParam == 2) instrus[idInstru].ins.pan(Value);
-
+    //  console.log(Math.log(instrus[idInstru].params[0][2]))
     }
   }
 }

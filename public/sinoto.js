@@ -77,7 +77,9 @@ function setup() {
   for (var i = 1; i < nboscilo + 1; i++) instrus.push(new instru(i - 1, "oscilo", 0, 0)); // creation des Instrulos
   for (var i = nboscilo + 1; i < nbinstru + 1; i++) instrus.push(new instru(i - 1, "noise", 0, 0)); // creation des Instrulos
 
-  socket = io.connect('localhost:3000'); // creation du socket
+  //socket = io.connect('localhost:3000'); // creation du socket
+  socket = io.connect('51.75.122.235:3000'); // creation du socket
+
   socket.on('Servorcmd', servorcmd); // le socket ecoute les messages 'Servorcmd' et applique la commande servorcmd
   socket.on('getData', saves.loadFile); // le socket ecoute les messages 'getData' et applique la commande saves.loadfile
   socket.emit('load', "backup", true); //////////////////////////////// A DECOMMENTER SOCKET !!!

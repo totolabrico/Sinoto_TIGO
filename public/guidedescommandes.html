@@ -1,10 +1,13 @@
 
 <h1>sinoto~</h1>
 <h4>TERMINAL INTERCONNECTÉ GÉNÉRATEUR D'OSCILLATEURS<br><br></h4>
+
+<div class="allhelp">
 <h3 id="aideTitles">1 / Manipuler les oscillateurs<br></h3>
 
 <div class="paragraphe">
   Dans ce programme, toutes les manipulations se font en lignes de commandes via le clavier en bas à gauche de l'écran. Le langage du programme est simple et accesible.<br><br>
+  Tous les utilisateurs du sinoto composent simultanément une partition unique.<br><br>
   Pour manipuler un oscillateur, indiquez tout d'abord son indentifiant (nombre entre 0 et 26,
   inscrits sur fond blanc) en début de ligne de commande, puis le paramètre que vous souhaitez modifier, puis la valeur de ce paramètre.<br><br>
 
@@ -35,14 +38,20 @@
 
 <div class="paragraphe">
 
-  Vous pouvez utiliser les flèches de votre clavier pour vous déplacer dans l'historique des commandes.
+  Vous pouvez utiliser les flèches de votre clavier pour vous déplacer dans l'historique des commandes, c'est le meilleur reflexe que vous puissiez adopter.
   <br>Les oscillateurs, bruits et séquenceurs affichent leurs parametres au survol de la souris.<br><br>
 
   .réinitialiser le programme:<br>
   <div class="exemple">reset all</div><br><br>
 
-  .réinitialiser les oscillateurs:<br>
+  .réinitialiser tous les oscillateurs:<br>
   <div class="exemple">reset</div><br><br>
+
+  .réinitialiser un ou plusieurs oscillateurs:<br>
+  <div class="syntaxe">reset [n°osc_debut]+[n°osc_fin]<br></div>
+  exemple : <div class="exemple">reset 0+10</div><br>
+donnera une reset des oscilos 0 à 10.<br><br>
+  <br>
 
   .réinitialiser les séquenceurs :<br>
   <div class="exemple">s reset</div><br><br>
@@ -84,7 +93,7 @@
 
   .changer la fréquence de plusieurs oscillateurs:<br>
   <div class="syntaxe">[n°osc_debut]+[n°osc_fin] f [valeur_en_hertz]+[increment_en_hertz]<br></div>
-  exemple: <div class="exemple">0+10 f 100+1</div><br><br>
+  exemple: <div class="exemple">0+10 f 440+1</div><br><br>
 
   .changer le volume de plusieurs oscillateurs:<br>
   <div class="syntaxe">[n°osc_debut]+[n°osc_fin] v [valeur_de_0_a_100]+[increment]<br></div>
@@ -242,7 +251,7 @@
   .incrementer une valeur avec un chiffre aleatoire:<br>
 
   <div class="syntaxe">[n°osc_debut] + [n°osc_fin] f [valeur_en_hertz] + r<br></div>
-  exemple: <div class="exemple">0+10 f 100+r</div><br><br>
+  exemple: <div class="exemple">0+10 f 440+r</div><br><br>
 
   .lancer plusieurs commandes simultanément:<br>
   <div class="syntaxe">[commande_1] & [commande_2] & [commande_3]...<br></div>
@@ -271,3 +280,5 @@
   .charger un fichier de paramètre d'oscillateurs:<br>
   <div class="syntaxe">load [nom_de_la_sauvegarde]<br></div>
   exemple: <div class="exemple">load oscis_01</div><br><br>
+
+  </div>
