@@ -41,7 +41,7 @@ var saves = {
 
     }
 
-    console.log("save is done");
+  //  console.log("save is done");
     socket.emit('save', this.name, this.paramFile); ///////////////////////////////////////// A DECOMMNETER SOCKET !!!!
   },
 

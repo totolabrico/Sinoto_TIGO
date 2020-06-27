@@ -52,7 +52,7 @@ var commandes = {
         }
       }
     }
-    console.log(mots); // liste d'arguments du mot
+  //  console.log(mots); // liste d'arguments du mot
     this.applyCom(inLine); // j'appele la fonction applyCom qui applique les commande aux instrus
 
   },
@@ -61,7 +61,7 @@ var commandes = {
 
     var isATimeCommand = false;
     if (phrase.substring(0, 1) == "s") {
-      console.log(phrase.substring(1, 2));
+    //  console.log(phrase.substring(1, 2));
       if (int(phrase.substring(1, 2)) >= 0 && int(phrase.substring(1, 2)) < nblooper) {
         this.timeCom(applyLine, int(phrase.substring(1, 2)), int(phrase.substring(1, 2)) + 1);
         isATimeCommand = true;
@@ -231,7 +231,7 @@ var commandes = {
 
     var idlooper = [idBegin, idEnd];
 
-    console.log(idlooper);
+  //  console.log(idlooper);
 
 
 

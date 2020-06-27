@@ -48,6 +48,9 @@ var nblooper = 4;
 var superlooper = []; // instance de timeline
 var eliane; // instance de composer
 
+var total_connections=0
+var current_connections=0;
+
 function preload() {
   myFont = loadFont('data/CourierPrime.ttf');
   helpStrings = loadStrings('guidedescommandes.html');
@@ -77,10 +80,11 @@ function setup() {
   for (var i = 1; i < nboscilo + 1; i++) instrus.push(new instru(i - 1, "oscilo", 0, 0)); // creation des Instrulos
   for (var i = nboscilo + 1; i < nbinstru + 1; i++) instrus.push(new instru(i - 1, "noise", 0, 0)); // creation des Instrulos
 
-  //socket = io.connect('localhost:3000'); // creation du socket
-  socket = io.connect('51.75.122.235:3000'); // creation du socket
+  socket = io.connect('localhost:3000'); // creation du socket
+//  socket = io.connect('51.75.122.235:3000'); // creation du socket
 
   socket.on('Servorcmd', servorcmd); // le socket ecoute les messages 'Servorcmd' et applique la commande servorcmd
+  socket.on('server-data',serverData);
   socket.on('getData', saves.loadFile); // le socket ecoute les messages 'getData' et applique la commande saves.loadfile
   socket.emit('load', "backup", true); //////////////////////////////// A DECOMMENTER SOCKET !!!
 
@@ -186,5 +190,12 @@ function mouseWheel(event) { // pour scroller dans l'historique
 function servorcmd(lineFromServor) {
     console.log("line from sinotoTestyServor :" + lineFromServor);
     clavier.getSocketEnter(lineFromServor);
+
+}
+
+function serverData(Total,Current){
+  console.log(Total,Current);
+  total_connections=Total;
+  current_connections=Current;
 
 }
