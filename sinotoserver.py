@@ -11,7 +11,8 @@ app = socketio.WSGIApp(sio, static_files={
     '/CourierPrime.ttf':'public/data/CourierPrime.ttf',
     '/cour.ttf':'public/data/cour.ttf',
     '/style.css': 'public/style.css',
-    '/favicon.png': 'public/favicon.png',
+    #'/favicon.png':'public/favicon.png',
+    '/favicon.png': {'content_type': 'image/png', 'filename': 'public/favicon.png'},
     '/socketiomin.js': 'public/lib/socketiomin.js',
     '/p5.js': 'public/lib/p5.js',
     '/p5.sound.js': 'public/lib/p5.sound.js',
@@ -31,31 +32,45 @@ app = socketio.WSGIApp(sio, static_files={
 
 })
 
-@sio.event
-def connect(sid, environ):
-    #print('connect ', sid)
-    print('connect ')
+sids=[]
 
 @sio.event
-def save(sid, data):
-    print('save', data)
-    with open('./sessions/readme.txt', 'w') as f:
-        f.write('readme')
+def connect(sid, environ):
+    global sids
+    #print('connect ')
+    sids.append(sid)
+
+@sio.event
+def cmd(sid, line):
+    for el in sids:
+        if sid != el:
+            sio.emit('Servorcmd', line,room=el)
+
+@sio.event
+def save(sid,name,data):
+    print('save', name)
+    with open('./sessions/'+name+'.txt', 'w') as f:
+        f.write(data)
     #sio.emit('my event', {'data': 'foobar'}, room=user_sid)
 
 @sio.event
-def load(sid, name):
+def load(sid,name,type):
     #print(os.listdir("./sessions/"))
-    fileObject = open('./sessions/'+name+'.txt', 'r')
+    print("load",name,type)
+    if type=="all":
+        name="set_"+name
+    fileObject = open('./sessions/set_'+name+'.txt', 'r')
     data = fileObject.read()
-    #sio.emit('load', data)
-    return data
+    sio.emit('getData', data)
+    #return data
     #print(data)
 
 @sio.event
 def disconnect(sid):
-    #print('disconnect ', sid)
-    print('disconnect')
+    global sids
+    #print('disconnect')
+    sids.remove(sids.index(sid))
+    #print(sids)
 
 def loop():
     while True:

@@ -46,8 +46,7 @@ var saves = {
   },
 
   loadFile: function(dataIn, all) {
-
-
+    console.log("loadfile"+dataIn)
     var allin = new Array(nbinstru);
 
     for (var i = 0; i < nbinstru; i++) allin[i] = [];
