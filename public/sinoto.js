@@ -52,7 +52,7 @@ var total_connections=0
 var current_connections=0;
 
 function preload() {
-  myFont = loadFont('data/CourierPrime.ttf');
+  myFont = loadFont('CourierPrime.ttf');
   helpStrings = loadStrings('guidedescommandes.html');
 }
 

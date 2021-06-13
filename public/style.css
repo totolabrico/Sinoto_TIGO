@@ -2,13 +2,13 @@
 @font-face {
   font-family: oneFont;
   /*font-family: oneFont;*/
-  src: url("data/CourierPrime.ttf");
+  src: url("./CourierPrime.ttf");
 }
 
 @font-face {
   font-family: secondFont;
   /*font-family: oneFont;*/
-  src: url("data/cour.ttf");
+  src: url("./cour.ttf");
 }
 
 /*////////////////////////////////////////////// GENERAL //////////////////////////////////////////////*/

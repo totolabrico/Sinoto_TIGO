@@ -25,7 +25,7 @@ function arpegiator() {
       this.incfreq=Math.round(100/random(2));
       this.fadefreq=Math.round(100/random(1));
 
-      commandes.analyse(this.idGroupNote[i]+"+"+int(this.idGroupNote[i+1]-1)+" f f "+this.fadefreq);
+    /*  commandes.analyse(this.idGroupNote[i]+"+"+int(this.idGroupNote[i+1]-1)+" f f "+this.fadefreq);*/
       commandes.analyse(this.idGroupNote[i]+"+"+int(this.idGroupNote[i+1]-1)+" "+this.arpValues[0]+"+"+this.incfreq+" "+this.arpValues[1]+" "+this.arpValues[2])
       this.arpFreq=float(this.arpFreq)+float(this.oriNote);
     }
