@@ -162,22 +162,26 @@ function instru(Id, type, X, Y) {
       fill(0);
       text(this.id, this.x + 17, this.y);
       fill(255);
-      if (this.type == "noise") text(Math.round(this.params[paramIdAff - 1][2] * 100) / 100, this.x + 60, this.y); // frequence jouée
+      if (this.type == "noise"){
+        textSize(10);
+         text(Math.round(this.params[paramIdAff - 1][2] * 100) / 100, this.x + 60, this.y); // frequence jouée
+         text(Math.round(this.params[paramIdAff][2] * 100) / 100, this.x + 100, this.y); // frequence jouée
+         textSize(11);
+       }
+      else{
       text(Math.round(this.params[paramIdAff][2] * 100) / 100, this.x + 100, this.y); // frequence jouée
+      }
       fill(volCol);
       text(textVol, this.x + 140, this.y); // volume joué
       fill(255);
       text(Math.round(this.params[paramIdAff + 2][2] * 100) / 100, this.x + 180, this.y); // panning joué
-
     },
 
     this.affInfo = function() {
       //// si la souris survole on affiche tout les params de l'instru dans un petit cadre
-
       var incX = 0;
       //if (mouseX > sinotoWidth / 3 && mouseX < sinotoWidth * 2 / 3) incX = -100;
       //if (mouseX > sinotoWidth * 2 / 3) incX = -300;
-
       this.mouseIsOver = false; // est ce que la souris est au dessus de l'id de l'instrument
       if (mouseX > this.x && mouseX < this.x + sinotoWidth/3 && mouseY > this.y - 10 && mouseY < this.y - 10 + this.haut) this.mouseIsOver = true;
 
