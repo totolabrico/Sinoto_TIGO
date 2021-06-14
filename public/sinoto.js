@@ -86,6 +86,7 @@ function setup() {
   socket.on('Servorcmd', servorcmd); // le socket ecoute les messages 'Servorcmd' et applique la commande servorcmd
   socket.on('server-data',serverData);
   socket.on('getData', saves.loadFile); // le socket ecoute les messages 'getData' et applique la commande saves.loadfile
+  socket.on('autosave', autoSave);
   socket.emit('load', "backup", true); //////////////////////////////// A DECOMMENTER SOCKET !!!
 
   setAff();
@@ -180,7 +181,7 @@ clavier.gethit(key, keyCode);
 function mouseWheel(event) { // pour scroller dans l'historique
     if (mouseY > sinotoY + sinotoHeight - consoleHeight && mouseY < sinotoY + sinotoHeight - 40 &&
       mouseX > sinotoX + 10 && mouseX < sinotoX + sinotoWidth - 10) {
-      console.log("scroll");
+      //console.log("scroll");
       if (event.delta > 0 && posYhisto < posInGlobalHisto) posYhisto += 0.5;
       if (event.delta < 0 && posYhisto > 0) posYhisto -= 0.5;
 
@@ -188,7 +189,7 @@ function mouseWheel(event) { // pour scroller dans l'historique
 }
 
 function servorcmd(lineFromServor) {
-    console.log("line from sinotoTestyServor :" + lineFromServor);
+    console.log("line from servor :" + lineFromServor);
     clavier.getSocketEnter(lineFromServor);
 
 }
@@ -198,4 +199,8 @@ function serverData(Total,Current){
   total_connections=Total;
   current_connections=Current;
 
+}
+
+function autoSave(EmptyData){
+saves.saveParams("backup",true)
 }
