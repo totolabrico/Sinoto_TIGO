@@ -65,6 +65,6 @@ def NoiseBasicLine():
     id=random.randint(27,29)
     width=round(random.random()*200+0.1,1)
     freq=round(random.random()*2000+50,1)
-    vol=round(random.random()*10+10,2)
+    vol=round(random.random()*5+10,2)
     pan=round(random.random()*2-1,2)
     return str(id)+" "+str(width)+" "+str(freq)+" "+str(vol)+" "+str(pan)

@@ -80,7 +80,7 @@ function setup() {
   for (var i = 1; i < nboscilo + 1; i++) instrus.push(new instru(i - 1, "oscilo", 0, 0)); // creation des Instrulos
   for (var i = nboscilo + 1; i < nbinstru + 1; i++) instrus.push(new instru(i - 1, "noise", 0, 0)); // creation des Instrulos
 
-//  socket = io.connect('localhost:3000'); // creation du socket
+  //socket = io.connect('localhost:3000'); // creation du socket
   socket = io.connect('51.75.122.235:3000'); // creation du socket
 
   socket.on('Servorcmd', servorcmd); // le socket ecoute les messages 'Servorcmd' et applique la commande servorcmd
@@ -138,6 +138,7 @@ function setAff() {
   inp = createInput('...'); // creation du clavier
   inp.input(myInputEvent); // fontion appelé par le clavier
   inp.position(sinotoX + 8, sinotoY + sinotoHeight - 52);
+  //inp.placeholder="...";
 
   inp.size(sinotoWidth - 20, 40); // taile du clavier
   //  inp.style('font-family', 'cnr'); // font du clavier
