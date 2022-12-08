@@ -4,7 +4,7 @@
   "description": "test",
   "main": "serveur.js",
   "dependencies": {
-    "express": "^4.17.1",
+    "express": "^4.18.2",
     "nodemon": "^1.19.1",
     "socket.io": "^2.2.0"
   },
