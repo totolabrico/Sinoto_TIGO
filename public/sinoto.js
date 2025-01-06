@@ -58,6 +58,7 @@ function preload() {
 
 function touchStarted() {
   getAudioContext().resume(); // autorise le contexte audio
+  inp.attribute('placeholder', '...');
 }
 
 
@@ -137,7 +138,7 @@ function setAff() {
   inp = createInput(''); // creation du clavier
   inp.input(myInputEvent); // fontion appelé par le clavier
   inp.position(sinotoX + 8, sinotoY + sinotoHeight - 52);
-  inp.attribute('placeholder', '...');
+  inp.attribute('placeholder', 'Click to start audio');
 
   inp.size(sinotoWidth - 20, 40); // taile du clavier
   //  inp.style('font-family', 'cnr'); // font du clavier
