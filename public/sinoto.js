@@ -71,7 +71,6 @@ function setup() {
   eliane = new composer;
   rec = new recorder();
   //  aide = createElement('aide', helpContent);
-
   //smooth();
   frameRate(30);
   textFont(myFont);
@@ -80,8 +79,8 @@ function setup() {
   for (var i = 1; i < nboscilo + 1; i++) instrus.push(new instru(i - 1, "oscilo", 0, 0)); // creation des Instrulos
   for (var i = nboscilo + 1; i < nbinstru + 1; i++) instrus.push(new instru(i - 1, "noise", 0, 0)); // creation des Instrulos
 
-  //socket = io.connect('localhost:3000'); // creation du socket
-  socket = io.connect('51.75.122.235:3000'); // creation du socket
+  socket = io.connect('localhost:3000'); // creation du socket
+  //socket = io.connect('51.75.122.235:3000'); // creation du socket
 
   socket.on('Servorcmd', servorcmd); // le socket ecoute les messages 'Servorcmd' et applique la commande servorcmd
   socket.on('server-data',serverData);
@@ -90,8 +89,8 @@ function setup() {
   socket.emit('load', "backup", true); //////////////////////////////// A DECOMMENTER SOCKET !!!
 
   setAff();
-//  getAudioContext().resume(); // autorise le contexte audio
-
+  document.getElementById("loader").remove();
+  //getAudioContext().resume(); // autorise le contexte audio
 }
 
 function windowResized() {
@@ -135,10 +134,10 @@ function setAff() {
     }
   }
 
-  inp = createInput('...'); // creation du clavier
+  inp = createInput(''); // creation du clavier
   inp.input(myInputEvent); // fontion appelé par le clavier
   inp.position(sinotoX + 8, sinotoY + sinotoHeight - 52);
-  //inp.placeholder="...";
+  inp.attribute('placeholder', '...');
 
   inp.size(sinotoWidth - 20, 40); // taile du clavier
   //  inp.style('font-family', 'cnr'); // font du clavier
@@ -170,14 +169,9 @@ function draw() {
 
   }
 
-
-
-
 function keyPressed() {
-clavier.gethit(key, keyCode);
+  clavier.gethit(key, keyCode);
 }
-
-
 
 function mouseWheel(event) { // pour scroller dans l'historique
     if (mouseY > sinotoY + sinotoHeight - consoleHeight && mouseY < sinotoY + sinotoHeight - 40 &&
@@ -192,14 +186,12 @@ function mouseWheel(event) { // pour scroller dans l'historique
 function servorcmd(lineFromServor) {
     console.log("line from servor :" + lineFromServor);
     clavier.getSocketEnter(lineFromServor);
-
 }
 
 function serverData(Total,Current){
   console.log(Total,Current);
   total_connections=Total;
   current_connections=Current;
-
 }
 
 function autoSave(EmptyData){
