@@ -29,7 +29,6 @@ app = socketio.WSGIApp(sio, static_files={
     '/recorder.js': 'public/recorder.js',
     '/arpegiator.js': 'public/arpegiator.js',
     '/guidedescommandes.html': 'public/guidedescommandes.html',
-
 })
 sids=[]
 
